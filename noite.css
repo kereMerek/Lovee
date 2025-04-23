@@ -1,0 +1,96 @@
+.noite {
+    background: linear-gradient(to bottom,
+      rgb(0,0,0) 50%,
+      rgb(25,19,39) 80%,
+      rgb(43,32,72) 100%);
+    position: absolute; top:0; left:0;
+    width:100%; height:100%;
+    overflow: hidden;
+  }
+  
+  /* Yıldızlar */
+  .constelacao { animation: rotate 600s linear infinite; }
+  .estrela {
+    position: absolute; background: #fff;
+    border-radius: 50%;
+    animation: estrela linear infinite;
+  }
+  .estrela.tam1 { width:1px; height:1px; }
+  .estrela.tam2 { width:2px; height:2px; }
+  .estrela.opacity2 { opacity: .5; }
+  .estrela.style4 { animation-name: estrelaDestacada; animation-duration:2s; }
+  
+  /* Meteor Yağmuru */
+  .meteoro {
+    position: absolute; width:2px; height:2px;
+    background: #fff; border-radius:50%;
+    transform: rotate(-35deg);
+    animation: meteoroStyle1 1s linear infinite;
+  }
+  .meteoro:before {
+    content: "";
+    position: absolute; left:2px; top:0;
+    width:0; height:0;
+    border-left:85px solid white;
+    border-top:1px solid transparent;
+    border-bottom:1px solid transparent;
+  }
+  
+  /* Ay */
+  .lua {
+    position: absolute; top:150px; right:200px;
+    width:120px; height:120px; border-radius:50%;
+    background: #fff;
+    box-shadow: 0 0 160px #fff, 0 0 8px rgba(255,255,255,0.26);
+    animation: lua 10s linear infinite;
+  }
+
+  /* Mevcut .lua tanımının ALTINA ekleyin */
+@media (max-width: 768px) {
+  /* Ay */
+  .lua {
+    top: 20px !important;
+    right: 20px !important;
+    width: 60px !important;
+    height: 60px !important;
+    box-shadow: 0 0 80px #fff !important;
+  }
+  .lua .textura {
+    background-size: 90% !important;
+  }
+
+  /* Meteor Animasyonu */
+  @keyframes meteoroStyle1 {
+    0% { opacity:0; right:50px; top:30px; }
+    100% { right:100%; top:80vh; }
+  }
+
+  /* Yıldız Animasyon Optimizasyonu */
+  .estrela {
+    animation-duration: 3s !important;
+  }
+}
+  
+  /* Anahtarframe tanımları */
+  @keyframes estrela {
+    0%,100% { box-shadow: 0 0 10px rgba(255,255,255,0.05); }
+    50%    { box-shadow: 0 0 10px 2px rgba(255,255,255,0.4); }
+  }
+  @keyframes estrelaDestacada {
+    0%,100% { box-shadow: 0 0 10px rgba(255,255,255,1); }
+    20%     { box-shadow: 0 0 10px rgb(255,196,196); }
+    80%     { box-shadow: 0 0 10px rgb(196,207,255); }
+  }
+  @keyframes meteoroStyle1 {
+    0% { opacity:0; right:300px; top:100px; }
+    30%,60% { opacity:1; }
+    100% { opacity:0; right:1000px; top:600px; }
+  }
+  @keyframes lua {
+    0%,100% { box-shadow: 0 0 160px #fff; }
+    50%     { box-shadow: 0 0 80px #fff; }
+  }
+  @keyframes rotate {
+    to { transform: rotate(360deg); }
+  }
+  
