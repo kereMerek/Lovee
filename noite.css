@@ -54,6 +54,15 @@
     width: 60px !important;
     height: 60px !important;
     box-shadow: 0 0 80px #fff !important;
+
+    .meteoro {
+      display: none; /* Mobilde meteor animasyonunu devre dışı bırak */
+    }
+  
+    .estrela {
+      width: 1px !important;
+      height: 1px !important;
+    }
   }
   .lua .textura {
     background-size: 90% !important;

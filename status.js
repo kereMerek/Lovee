@@ -2,8 +2,8 @@ function init() {
   const isMobile = window.innerWidth <= 768;
 
   // Yıldız ve parçacık sayıları
-  const cssStarCount = isMobile ? 200 : 500; // Daha az yıldız
-  const particleCount = isMobile ? 60 : 150;
+  const cssStarCount = isMobile ? 100 : 500; // Mobilde daha az yıldız
+  const particleCount = isMobile ? 30 : 150; // Mobilde daha az parçacık
 
   // 1) El yapımı CSS yıldız/meteor animasyonları
   const style = ["style1", "style2", "style3", "style4"];
@@ -25,41 +25,44 @@ function init() {
   if (isMobile) {
     document.documentElement.style.setProperty('--anim-duration', '1.5s');
     document.querySelectorAll('.estrela').forEach(star => {
-      star.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`; // 0.5-2s
+      star.style.animationDuration = `${Math.random() * 1 + 0.5}s`; // 0.5-1.5s
     });
   }
 
-  // Meteor yağmuru (sabit bırakabilirsiniz)
-  let timeout = rand(5000, 10000);
-  (function spawnMeteoro() {
-    setTimeout(spawnMeteoro, timeout);
-    timeout = rand(5000, 10000);
-    const m = `<div class="meteoro ${style[rand(0, 4)]}"></div>`;
-    const chute = document.querySelector('.chuvaMeteoro');
-    chute.innerHTML = m;
-    setTimeout(() => chute.innerHTML = "", 1000);
-  })();
+  // Meteor yağmuru (mobilde devre dışı bırak)
+  if (!isMobile) {
+    let timeout = rand(5000, 10000);
+    (function spawnMeteoro() {
+      setTimeout(spawnMeteoro, timeout);
+      timeout = rand(5000, 10000);
+      const m = `<div class="meteoro ${style[rand(0, 4)]}"></div>`;
+      const chute = document.querySelector('.chuvaMeteoro');
+      chute.innerHTML = m;
+      setTimeout(() => chute.innerHTML = "", 1000);
+    })();
+  }
 
-  // 2) Particles.js yıldızlar (çizgisiz, responsive sayıda)
-  particlesJS("particles-js", {
-    particles: {
-      number: { value: particleCount, density: { enable: true, value_area: 800 } },
-      color: { value: "#ffffff" },
-      shape: { type: ["star"], stroke: { width: 0, color: "#ffffff" } },
-      opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.2, sync: false } },
-      size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
-      line_linked: { enable: false },
-      links: { enable: false },
-      move: { enable: true, speed: 0.2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
-    },
-    interactivity: {
-      events: {
-        onhover: { enable: false },
-        onclick: { enable: false }
-      }
-    },
-    retina_detect: true
-  });
+  // 2) Particles.js yıldızlar (mobilde devre dışı bırak)
+  if (!isMobile) {
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: particleCount, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: ["star"], stroke: { width: 0, color: "#ffffff" } },
+        opacity: { value: 0.7, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.2, sync: false } },
+        size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 1, sync: false } },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 0.2, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: false },
+          onclick: { enable: false }
+        }
+      },
+      retina_detect: true
+    });
+  }
 }
 
 // 1. Bir mesaj havuzu oluştur

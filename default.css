@@ -29,19 +29,24 @@ html, body {
 }
 
 /* Mesaj balonu */
+/* Mobil cihazlar için medya sorguları */
 @media (max-width: 768px) {
-  .message-star {
-    font-size: 18px !important;
-    padding: 10px 16px !important;
-    border-radius: 20px !important;
-    max-width: 80vw !important;
-    text-align: center;
-    white-space: nowrap;
+  #particles-js {
+    display: none; /* Mobilde particles.js'yi devre dışı bırak */
   }
-  
-  .message-star::before {
-    font-size: 22px !important;
-    margin-right: 8px !important;
+
+  .constelacao {
+    animation-duration: 300s !important; /* Yavaş döndürme */
+  }
+
+  .estrela {
+    animation-duration: 2s !important; /* Daha kısa animasyon */
+  }
+
+  .message-star {
+    font-size: 16px !important;
+    padding: 8px 12px !important;
+    border-radius: 15px !important;
   }
 }
 
